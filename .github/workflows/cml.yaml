@@ -3,7 +3,7 @@ on: [push]
 jobs:
   train-and-report:
     runs-on: ubuntu-latest
-    # container: docker://ghcr.io/iterative/cml:0-dvc2-base1
+    container: docker://ghcr.io/iterative/cml:0-dvc2-base1
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -21,7 +21,7 @@ jobs:
           # Create CML report
           cat metrics.txt >> report.md
           # echo '![](./plot.png "Confusion Matrix")' >> report.md
-          cml comment create report.md
+          # cml comment create report.md
       - name: Finalising
         run: |
           echo "Done!"
