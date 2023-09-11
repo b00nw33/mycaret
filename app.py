@@ -9,4 +9,4 @@ data = get_data('insurance')
 
 with open("metrics.txt", "w") as outfile:
     data.head().to_csv(outfile, header=None, index=None, sep=' ', mode='a')
-    # outfile.write(data.head())
+    outfile.write("Writing line manually")
