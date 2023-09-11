@@ -5,17 +5,22 @@ jobs:
     runs-on: ubuntu-latest
     container: docker://ghcr.io/iterative/cml:0-dvc2-base1
     steps:
+      - name: Set up environment
       - uses: actions/checkout@v4
-      - name: Ingest data
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pycaret[full]
+      - name: Run app.py
+        run: |
           python app.py  # generate plot.png
 
           # Create CML report
           cat metrics.txt >> report.md
           # echo '![](./plot.png "Confusion Matrix")' >> report.md
           cml comment create report.md
+      - name: Finalising
+        run: |
+          echo "Done!"
