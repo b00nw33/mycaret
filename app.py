@@ -8,5 +8,6 @@ from pycaret.regression import *
 data = get_data('insurance')
 
 with open("metrics.txt", "w") as outfile:
-    outfile.write(data.head() + "\n")
-    outfile.write(data.info() + "\n")
+    outfile.write(data.head())
+    outfile.write("\n")
+    outfile.write(data.info())
