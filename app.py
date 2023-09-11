@@ -14,8 +14,8 @@ with open("metrics.txt", "w") as outfile:
 
 numeric = ['age', 'bmi', 'children', 'charges']
 categorical = ['smoker', 'sex', 'region']
-color = ['C0', 'C1', 'C2', 'C3']
-cols = ['age', 'bmi', 'charges', 'smoker']
+# color = ['C0', 'C1', 'C2', 'C3']
+# cols = ['age', 'bmi', 'charges', 'smoker']
 
 reg = setup(data=data, target='charges', train_size = 0.8, session_id = 7402,
             numeric_features = numeric[:-1], categorical_features = categorical,
@@ -34,3 +34,14 @@ params = {
 
 tuned_model = tune_model(model, optimize = 'RMSE', fold = 10,
                        custom_grid = params, n_iter = 100)
+
+predictions = predict_model(model)
+predictions.head()
+
+plot_model(tuned_model, 'feature', scale = 4)
+
+plot_model(model, 'error')
+
+final_model = finalize_model(tuned_model)
+
+save_model(final_model, 'regression_model')
