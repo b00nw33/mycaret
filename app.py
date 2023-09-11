@@ -21,4 +21,16 @@ reg = setup(data=data, target='charges', train_size = 0.8, session_id = 7402,
             numeric_features = numeric[:-1], categorical_features = categorical,
             transformation = True, normalize = True)
 
-best = compare_models(sort='RMSE')
+# best = compare_models(sort='RMSE')
+
+model = create_model('gbr', fold = 10)
+
+params = {
+        'learning_rate': [0.05, 0.08, 0.1],
+        'max_depth': [1,2, 3, 4, 5, 6, 7, 8],
+        'subsample': [0.8, 0.9, 1, 1.1],
+        'n_estimators' : [100, 200, 300, 400, 500]
+    }
+
+tuned_model = tune_model(model, optimize = 'RMSE', fold = 10,
+                       custom_grid = params, n_iter = 100)
