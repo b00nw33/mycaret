@@ -9,5 +9,5 @@ data = get_data('insurance')
 
 with open("metrics.txt", "w") as outfile:
     outfile.write("Before data.info():\n")
-    data.info() #.to_csv(outfile, header=None, index=None, sep=' ', mode='a')
+    data.info()
     outfile.write("After data.info()")
