@@ -1,0 +1,6 @@
+pycaret==3.0
+pandas
+matplotlib
+seaborn
+scikit-learn
+setuptools
